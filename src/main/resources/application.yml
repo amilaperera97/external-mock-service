@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: external-mock-service
+    prefix: ems
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        hbm2ddl:
+          auto: update
+      temp:
+        use_jdbc_metadata_defaults: false
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL9Dialect
+      ddl-auto: create
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/scanmyway?currentSchema=external_mock
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: admin
+    maximum-pool-size: 10
+    minimum-idle: 2
+    idle-timeout: 120000
+  cloud:
+    loadbalancer:
+      ribbon:
+        enable: false
+
+server:
+  servlet:
+    context-path: /external-mock-service
+  port: ${SERVER_PORT:8890}
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:50}
+      min-spare: ${TOMCAT_MIN_THREADS:20}
+    accept-count: ${TOMCAT_ACCEPT_COUNT:300}
+    basedir: /
+    accesslog:
+      enabled: true
+      directory: "/logs/external-mock-service"
+      prefix: access_log
+      buffered: false
+      suffix: .log
+      file-date-format: .yyyy-MM-dd
+      pattern: "%h %l %u %t %r %s %b %D"
+
+endpoints:
+  health:
+    enabled: true
+  beans:
+    enabled: true
+  auditevents:
+    enabled: true
+  configprops:
+    enabled: true
