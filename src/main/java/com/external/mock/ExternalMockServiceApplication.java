@@ -1,5 +1,6 @@
 package com.external.mock;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class ExternalMockServiceApplication {
+public class ExternalMockServiceApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(ExternalMockServiceApplication.class, args);
@@ -24,5 +25,10 @@ public class ExternalMockServiceApplication {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+
     }
 }

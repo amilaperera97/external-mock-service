@@ -1,10 +1,9 @@
 package com.external.mock.repository;
 
-import com.external.mock.entity.Shop;
+import com.external.mock.entity.Weight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShopRepository extends JpaRepository<Shop, Long> {
-    Shop findShopByName(String name);
+public interface WeightRepository extends JpaRepository<Weight, Long> {
 }

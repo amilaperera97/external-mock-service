@@ -1,13 +1,5 @@
 package com.external.mock.dto;
-
-import com.external.mock.entity.Category;
-import com.external.mock.entity.Image;
-import com.external.mock.entity.Shop;
-import com.external.mock.entity.Weight;
 import lombok.Data;
-
-import java.util.List;
-
 @Data
 public class ItemDto {
     private String name;
@@ -25,8 +17,7 @@ public class ItemDto {
     private String countryOfOrigin;
     private String storageInstructions;
     private Boolean isMultiBuyOffer;
-    private Weight weight;
-    private List<Image> images;
+    private WeightDto weight;
     private String categoryName;
     private Long shopId;
 }
