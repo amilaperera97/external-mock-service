@@ -35,7 +35,7 @@ public class ItemServiceImpl implements ItemService {
         assignItemData(item, itemEntity);
 
         Item savedData = itemRepository.save(itemEntity);
-        return (savedData == null) ? null : entityConverter.convert(savedData, ItemDto.class);
+        return entityConverter.convert(savedData, ItemDto.class);
     }
 
     private void assignItemData(ItemDto item, Item itemEntity) {
@@ -67,8 +67,7 @@ public class ItemServiceImpl implements ItemService {
         Shop shop = shopRepository.findShopByName(shopName.name());
         Optional<ItemDto> itemDto = findItemByShop(itemCode, shop.getId());
         itemDto.orElseThrow(() -> new Exception("Invalid Id"));
-        ProductInfoDto productInfo = entityConverter.convert(itemDto.get(), ProductInfoDto.class);
-        return productInfo;
+        return entityConverter.convert(itemDto.get(), ProductInfoDto.class);
     }
 
     @Override

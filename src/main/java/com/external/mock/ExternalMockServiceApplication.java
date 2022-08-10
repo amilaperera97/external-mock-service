@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class ExternalMockServiceApplication implements CommandLineRunner {
+public class ExternalMockServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ExternalMockServiceApplication.class, args);
@@ -25,10 +25,5 @@ public class ExternalMockServiceApplication implements CommandLineRunner {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-
     }
 }

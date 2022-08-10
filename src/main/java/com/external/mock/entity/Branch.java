@@ -3,7 +3,6 @@ package com.external.mock.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "branch")

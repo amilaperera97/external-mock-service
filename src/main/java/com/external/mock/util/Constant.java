@@ -1,5 +1,7 @@
 package com.external.mock.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpMethod;
 
 import java.util.HashMap;
@@ -31,16 +33,18 @@ public class Constant {
         public static final String PAYMENT = "/product/payment";
         public static final Map<String, Endpoint> ENDPOINT_MAP = new HashMap<>();
 
-        {
+        static {
             ENDPOINT_MAP.put(PRODUCT_INFO, new Endpoint(HOST, HttpMethod.GET, PRODUCT_INFO));
             ENDPOINT_MAP.put(PRODUCT_PRICE_INFO, new Endpoint(HOST, HttpMethod.GET, PRODUCT_PRICE_INFO));
             ENDPOINT_MAP.put(PAYMENT, new Endpoint(HOST, HttpMethod.POST, PAYMENT));
         }
     }
 
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class EndpointInfo {
         public static final String API_V1 = "/api/v1";
         public static final String ITEM = "/item";
+        public static final String CATEGORY = "/category";
     }
 
 }

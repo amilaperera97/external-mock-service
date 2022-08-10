@@ -1,10 +1,13 @@
 package com.external.mock.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommonUtil {
     private static final Random RANDOM = new Random();
 

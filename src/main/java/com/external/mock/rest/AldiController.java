@@ -1,28 +1,20 @@
 package com.external.mock.rest;
 
-import com.external.mock.dto.ItemDto;
 import com.external.mock.dto.ShopNames;
 import com.external.mock.dto.aldi.PaymentDto;
 import com.external.mock.dto.aldi.ProductInfoDto;
 import com.external.mock.dto.aldi.ProductInfoPriceDto;
-import com.external.mock.entity.Shop;
 import com.external.mock.service.ItemService;
-import com.external.mock.service.ShopService;
-import com.external.mock.util.converter.EntityConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.tree.TreeNode;
 import javax.validation.Valid;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
 
 import static com.external.mock.util.Constant.Aldi.*;
 
+@RestController
 @RequestMapping(value = HOST)
 @RequiredArgsConstructor
 public class AldiController {
@@ -39,8 +31,10 @@ public class AldiController {
     }
 
     @PostMapping(value = PAYMENT)
-    public ResponseEntity payment(@Valid @RequestBody PaymentDto payment) {
-        List<String> samples= new LinkedList<>();
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+    public ResponseEntity<HttpStatus> payment(@Valid @RequestBody PaymentDto payment) {
+        if ((payment.getCardNumber().length() != 16 || payment.getCardNumber().length() != 19)
+                && (payment.getCvc().length() != 3) && payment.getExpiryDate().length() != 4)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
